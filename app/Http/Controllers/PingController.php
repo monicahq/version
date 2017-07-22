@@ -65,7 +65,7 @@ class PingController extends Controller
         // check which version the user has
         $userVersion = Release::where('version', $data['version'])->first();
         if (!$userVersion) {
-            $userVersionId = 1;
+            $userVersionId = 0;
         } else {
             $userVersionId = $userVersion->id;
         }
@@ -77,7 +77,7 @@ class PingController extends Controller
         $numberOfVersionsSinceUserVersion = $currentVersion->id - $userVersionId;
 
         // get all the release notes that have been released since the version of the user
-        $releaseNotesMessage = '';
+        $releaseNotesMessage = null;
         if (! ($userVersionId == $currentVersion->id)) {
             $releaseNotes = Release::whereBetween('id', [$userVersionId, $currentVersion->id])->get();
             foreach ($releaseNotes as $releaseNote) {
