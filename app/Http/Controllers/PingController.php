@@ -59,8 +59,10 @@ class PingController extends Controller
         $ping->number_of_contacts = $data['contacts'];
         $ping->save();
 
+        // check which version is the current one
         $currentVersion = Release::orderBy('released_on', 'asc')->orderBy('version', 'desc')->first();
 
+        // check which version the user has
         $userVersion = Release::where('version', $data['version'])->first();
         if (!$userVersion) {
             $userVersionId = 1;
@@ -68,9 +70,13 @@ class PingController extends Controller
             $userVersionId = $userVersion->id;
         }
 
+        // is the version of the user, the current version?
         $isNewVersion = ($currentVersion->version == $data['version'] ? 'false' : 'true');
+
+        // how many versions have there been since the version of the user?
         $numberOfVersionsSinceUserVersion = $currentVersion->id - $userVersionId;
 
+        // get all the release notes that have been released since the version of the user
         $releaseNotesMessage = '';
         if (! ($userVersionId == $currentVersion->id)) {
             $releaseNotes = Release::whereBetween('id', [$userVersionId, $currentVersion->id])->get();
