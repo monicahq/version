@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function releases()
     {
         $data = [
-          'releases' => Release::orderBy('released_on', 'asc')->orderBy('version', 'desc')->get()
+          'releases' => Release::orderBy('id', 'desc')->get()
         ];
 
         return view('releases.index', $data);

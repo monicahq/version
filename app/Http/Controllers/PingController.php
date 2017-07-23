@@ -60,7 +60,7 @@ class PingController extends Controller
         $ping->save();
 
         // check which version is the current one
-        $currentVersion = Release::orderBy('released_on', 'asc')->orderBy('version', 'desc')->first();
+        $currentVersion = Release::orderBy('id', 'desc')->first();
 
         // check which version the user has
         $userVersion = Release::where('version', $data['version'])->first();
@@ -79,15 +79,15 @@ class PingController extends Controller
         // get all the release notes that have been released since the version of the user
         $releaseNotesMessage = null;
         if (! ($userVersionId == $currentVersion->id)) {
-            $releaseNotes = Release::whereBetween('id', [$userVersionId, $currentVersion->id])->get();
+            $releaseNotes = Release::whereBetween('id', [$userVersionId, $currentVersion->id])->orderBy('id', 'desc')->get();
             foreach ($releaseNotes as $releaseNote) {
-                $releaseNotesMessage .= $releaseNote->notes;
+                $releaseNotesMessage .= '<h2>v'.$releaseNote->version.'</h2>'.'<div class="note">'.$releaseNote->notes.'</div>';
             }
         }
 
         $json = [
             'new_version' => $isNewVersion,
-            'current_version' => $currentVersion->version,
+            'latest_version' => $currentVersion->version,
             'number_of_versions_since_user_version' => $numberOfVersionsSinceUserVersion,
             'notes' => $releaseNotesMessage
         ];

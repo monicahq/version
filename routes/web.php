@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('ping/', 'PingController@ping');
+//Route::post('ping/', 'PingController@ping');
 
 Route::group(['middleware' => 'throttle'], function () {
 });
