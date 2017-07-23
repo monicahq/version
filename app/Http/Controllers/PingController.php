@@ -71,7 +71,7 @@ class PingController extends Controller
         }
 
         // is the version of the user, the current version?
-        $isNewVersion = ($currentVersion->version == $data['version'] ? 'false' : 'true');
+        $isNewVersion = ($currentVersion->version == $data['version'] ? false : true);
 
         // how many versions have there been since the version of the user?
         $numberOfVersionsSinceUserVersion = $currentVersion->id - $userVersionId;
