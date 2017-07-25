@@ -79,7 +79,7 @@ class PingController extends Controller
         // get all the release notes that have been released since the version of the user
         $releaseNotesMessage = null;
         if (! ($userVersionId == $currentVersion->id)) {
-            $releaseNotes = Release::whereBetween('id', [$userVersionId, $currentVersion->id])->orderBy('id', 'desc')->get();
+            $releaseNotes = Release::whereBetween('id', [$userVersionId + 1, $currentVersion->id])->orderBy('id', 'desc')->get();
             foreach ($releaseNotes as $releaseNote) {
                 $releaseNotesMessage .= '<h2>v'.$releaseNote->version.'</h2>'.'<div class="note">'.$releaseNote->notes.'</div>';
             }
