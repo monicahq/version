@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Ping;
-use App\Host;
-use App\Release;
+use App\Models\Ping;
+use App\Models\Host;
+use App\Models\Release;
 use Validator;
 use Illuminate\Http\Request;
 

@@ -5,14 +5,18 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "php": "^7.4 || ^8.0",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "laravel/framework": "^8.0",
+        "laravel/tinker": "^2.6",
+        "laravel/ui": "^3.2"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "barryvdh/laravel-debugbar": "^3",
+        "fakerphp/faker": "^1.10",
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [

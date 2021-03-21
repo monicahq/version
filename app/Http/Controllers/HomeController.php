@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Release;
+use App\Models\Release;
 use Validator;
 use Illuminate\Http\Request;
 
