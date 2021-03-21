@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,11 +41,11 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return redirect('login');
-    }
+        if (config('app.disable_signup')) {
+            abort(403, trans('auth.signup_disabled'));
+        }
 
-    public function register()
-    {
+        return view('auth.register');
     }
 
     /**
@@ -71,6 +71,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (config('app.disable_signup')) {
+            abort(403, trans('auth.signup_disabled'));
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
