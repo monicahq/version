@@ -2,19 +2,23 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Setup;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
     /**
-     * The Artisan commands provided by your application.
+     * Register the Closure based commands for the application.
      *
-     * @var array
+     * @return void
      */
-    protected $commands = [
-        //
-    ];
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
+
+        require base_path('routes/console.php');
+    }
 
     /**
      * Define the application's command schedule.
@@ -24,17 +28,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-    }
-
-    /**
-     * Register the Closure based commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        require base_path('routes/console.php');
+        if (config('trustedproxy.cloudflare')) {
+            $schedule->command('cloudflare:reload')->daily(); // @codeCoverageIgnore
+        }
     }
 }
