@@ -30,7 +30,7 @@ Route::group(['middleware' => 'throttle'], function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
