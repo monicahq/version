@@ -11,7 +11,8 @@
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.6",
-        "laravel/ui": "^3.2"
+        "laravel/ui": "^3.2",
+        "monicahq/laravel-cloudflare": "^1.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3",
