@@ -16,8 +16,9 @@ use App\Http\Controllers\Api\ReleaseApiController;
 */
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
-    Route::apiResource('releases', ReleaseApiController::class)->only([
-        'index', 'store'
-    ]);
+    Route::name('api.')->group(function () {
+        Route::apiResource('releases', ReleaseApiController::class)->only([
+            'index', 'store'
+        ]);
+    });
 });
