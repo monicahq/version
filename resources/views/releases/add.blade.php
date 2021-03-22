@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-12">
             <form class="form-horizontal" method="post" action="/releases/add">
-                {{ csrf_field() }}
+                @csrf
                 <fieldset>
                     <legend>Add a new release</legend>
 

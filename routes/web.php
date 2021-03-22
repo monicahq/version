@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PingController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TokensController;
+use App\Http\Controllers\ReleaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +23,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('ping/', 'PingController@ping');
+Route::post('ping/', [PingController::class, 'ping']);
 
 Route::group(['middleware' => 'throttle'], function () {
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/releases', 'HomeController@releases');
-Route::get('/releases/add', 'HomeController@releaseAdd');
-Route::post('/releases/add', 'HomeController@releaseStore');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::resource('releases', ReleaseController::class)->only([
+        'index', 'create', 'store'
+    ]);
+
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('tokens', TokensController::class)->only([
+        'index', 'create', 'store', 'destroy'
+    ]);
+
+});

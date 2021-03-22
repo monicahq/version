@@ -47,17 +47,19 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li>
-                                <a href="/releases/add">Add release</a>
+                                <a href="{{ route('releases.create') }}">Add release</a>
                             </li>
                             <li>
-                                <a href="/releases">Releases</a>
+                                <a href="{{ route('releases.index') }}">Releases</a>
                             </li>
+                            <!--
                             <li>
                                 <a href="/hosts">Hosts</a>
                             </li>
                             <li>
                                 <a href="/pings">Pings</a>
                             </li>
+                        -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -65,6 +67,12 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('profile.show') }}">
+                                            Profile
+                                        </a>
+                                        <a href="{{ route('tokens.index') }}">
+                                            Tokens
+                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
