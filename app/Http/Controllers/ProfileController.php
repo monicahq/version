@@ -22,11 +22,11 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        User::update([
+        $request->user()->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
         ]);
 
-        return $this->index();
+        return redirect()->route('profile.show');
     }
 }

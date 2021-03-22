@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Release;
-use Validator;
 use Illuminate\Http\Request;
+use App\Services\CreateRelease;
 
 class ReleaseController extends Controller
 {
@@ -29,23 +29,12 @@ class ReleaseController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'version' => 'required',
-            'release' => 'required',
+        app(CreateRelease::class)->execute([
+            'version' => $request->get('version'),
+            'notes' => $request->get('release'),
+            'released_on' => $request->get('date'),
         ]);
 
-        if ($validator->fails()) {
-            return back()
-                ->withInput()
-                ->withErrors($validator);
-        }
-
-        $release = new Release;
-        $release->version = $request->get('version');
-        $release->notes = $request->get('release');
-        $release->released_on = $request->get('date');
-        $release->save();
-
-        return redirect('releases');
+        return redirect()->route('releases.index');
     }
 }
