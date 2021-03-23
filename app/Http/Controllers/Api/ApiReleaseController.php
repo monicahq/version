@@ -10,7 +10,7 @@ use App\Traits\JsonRespondController;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 
-class ReleaseApiController extends Controller
+class ApiReleaseController extends Controller
 {
     use JsonRespondController;
 
@@ -46,7 +46,7 @@ class ReleaseApiController extends Controller
             return $this->respondInvalidQuery();
         }
 
-        $this->setErrorCode(201);
+        $this->setHTTPStatusCode(201);
         return $this->respond($release);
     }
 }

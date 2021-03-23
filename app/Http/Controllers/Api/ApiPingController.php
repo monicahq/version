@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Ping;
 use App\Models\Host;
 use App\Models\Release;
 use Validator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Traits\JsonRespondController;
 
-class PingController extends Controller
+class ApiPingController extends Controller
 {
+    use JsonRespondController;
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -21,26 +25,17 @@ class PingController extends Controller
 
         // check if we have all the params that we need
         if (array_key_exists('uuid', $data) == false) {
-            return response()->json([
-                'error' => 'invalid_access_key',
-                'code' => '102',
-            ], 400);
+            return $this->respondInvalidParameters('uuid not present');
         }
 
         // check if we have all the params that we need
         if (array_key_exists('version', $data) == false) {
-            return response()->json([
-                'error' => 'invalid_access_key',
-                'code' => '102',
-            ], 400);
+            return $this->respondInvalidParameters('version not present');
         }
 
         // check if we have all the params that we need
         if (array_key_exists('contacts', $data) == false) {
-            return response()->json([
-                'error' => 'invalid_access_key',
-                'code' => '102',
-            ], 400);
+            return $this->respondInvalidParameters('contacts not present');
         }
 
         // record host
@@ -92,6 +87,6 @@ class PingController extends Controller
             'notes' => $releaseNotesMessage
         ];
 
-        return response()->json($json);
+        return $this->respond($json);
     }
 }
