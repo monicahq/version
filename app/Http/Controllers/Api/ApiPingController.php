@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Release;
 use App\Services\Ping\CreatePing;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Traits\JsonRespondController;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class ApiPingController extends Controller
@@ -40,7 +40,7 @@ class ApiPingController extends Controller
 
         // check which version the user has
         $userVersion = Release::where('version', $request->input('version'))->first();
-        $userVersionId = (!$userVersion) ? 0: $userVersion->id;
+        $userVersionId = (! $userVersion) ? 0 : $userVersion->id;
 
         // is the version of the user, the current version?
         $isNewVersion = $currentVersion->version !== $request->input('version');
@@ -64,7 +64,7 @@ class ApiPingController extends Controller
             'new_version' => $isNewVersion,
             'latest_version' => $currentVersion->version,
             'number_of_versions_since_user_version' => $numberOfVersionsSinceUserVersion,
-            'notes' => $releaseNotesMessage
+            'notes' => $releaseNotesMessage,
         ];
 
         return $this->respond($json);

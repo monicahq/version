@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Release;
-use Laravel\Sanctum\Sanctum;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
 
 class ApiGetReleaseTest extends TestCase
 {

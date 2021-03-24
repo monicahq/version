@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Release;
-use Laravel\Sanctum\Sanctum;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
 
 class ApiCreateReleaseTest extends TestCase
 {
@@ -32,7 +32,7 @@ class ApiCreateReleaseTest extends TestCase
         $request = [
             'version' => '1',
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $response = $this->json('POST', '/api/releases', $request);
@@ -46,10 +46,9 @@ class ApiCreateReleaseTest extends TestCase
             'id' => $releaseId,
             'version' => '1',
             'released_on' => '2021-01-01 00:00:00',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ]);
     }
-
 
     /** @test */
     public function it_fails_if_version_not_present(): void
@@ -61,7 +60,7 @@ class ApiCreateReleaseTest extends TestCase
 
         $request = [
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $response = $this->json('POST', '/api/releases', $request);
@@ -84,7 +83,7 @@ class ApiCreateReleaseTest extends TestCase
 
         $request = [
             'version' => '1',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $response = $this->json('POST', '/api/releases', $request);

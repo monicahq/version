@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\ReleaseController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ReleaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +19,12 @@ use App\Http\Controllers\ReleaseController;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
+        'canRegister' => Route::has('register'),
     ]);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
     Route::resource('releases', ReleaseController::class)->only([
-        'index', 'create', 'store', 'update', 'destroy'
+        'index', 'create', 'store', 'update', 'destroy',
     ]);
-
 });
