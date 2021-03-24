@@ -25,7 +25,7 @@
           <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="permission in availablePermissions" :key="permission">
               <label class="flex items-center">
-                <jet-checkbox v-model="createApiTokenForm.permissions" :value="permission" />
+                <jet-checkbox v-model:checked="createApiTokenForm.permissions" :value="permission" />
                 <span class="ml-2 text-sm text-gray-600">
                   {{ permission }}
                 </span>
@@ -124,7 +124,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div v-for="permission in availablePermissions" :key="permission">
             <label class="flex items-center">
-              <jet-checkbox v-model="updateApiTokenForm.permissions" :value="permission" />
+              <jet-checkbox v-model:checked="updateApiTokenForm.permissions" :value="permission" />
               <span class="ml-2 text-sm text-gray-600">
                 {{ permission }}
               </span>
