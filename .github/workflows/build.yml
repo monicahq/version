@@ -26,7 +26,7 @@ jobs:
       matrix:
         php-version: ['8.0']
         connection: [sqlite, mysql]
-        coverage: true
+        coverage: [true]
 
     steps:
       - name: Checkout sources
