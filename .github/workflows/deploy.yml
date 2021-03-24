@@ -84,8 +84,8 @@ jobs:
 
       - name: Install yarn dependencies
         run: yarn install
-#      - name: Lint files
-#        run: yarn run lint:all
+      - name: Lint files
+        run: yarn run lint
       - name: Build assets
         run: yarn run production
 

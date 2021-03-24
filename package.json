@@ -7,7 +7,9 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "lint": "eslint --ext .js,.vue resources/js/",
+        "lint:fix": "yarn lint --fix"
     },
     "devDependencies": {
         "@inertiajs/inertia": "^0.8.4",
@@ -18,6 +20,12 @@
         "@vue/compiler-sfc": "^3.0.5",
         "autoprefixer": "^10.0.2",
         "axios": "^0.21",
+        "eslint": "^7.22.0",
+        "eslint-config-standard": "^16.0.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.3.1",
+        "eslint-plugin-standard": "^5.0.0",
+        "eslint-plugin-vue": "^7.8.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
@@ -25,5 +33,10 @@
         "tailwindcss": "^2.0.1",
         "vue": "^3.0.5",
         "vue-loader": "^16.1.2"
+    },
+    "lint-staged": {
+        "resources/js/**/*.{vue,js}": [
+            "yarn lint --fix"
+        ]
     }
 }

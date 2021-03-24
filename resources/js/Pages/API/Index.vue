@@ -1,35 +1,36 @@
 <template>
-    <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                API Tokens
-            </h2>
-        </template>
+  <app-layout>
+    <template #header>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        API Tokens
+      </h2>
+    </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <api-token-manager :tokens="tokens"
-                                   :available-permissions="availablePermissions"
-                                   :default-permissions="defaultPermissions" />
-            </div>
-        </div>
-    </app-layout>
+    <div>
+      <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <api-token-manager :tokens="tokens"
+                           :available-permissions="availablePermissions"
+                           :default-permissions="defaultPermissions"
+        />
+      </div>
+    </div>
+  </app-layout>
 </template>
 
 <script>
-    import ApiTokenManager from './ApiTokenManager'
-    import AppLayout from '@/Layouts/AppLayout'
+import ApiTokenManager from './ApiTokenManager';
+import AppLayout from '@/Layouts/AppLayout';
 
-    export default {
-        props: [
-            'tokens',
-            'availablePermissions',
-            'defaultPermissions',
-        ],
+export default {
 
-        components: {
-            ApiTokenManager,
-            AppLayout,
-        },
-    }
+  components: {
+    ApiTokenManager,
+    AppLayout,
+  },
+  props: [
+    'tokens',
+    'availablePermissions',
+    'defaultPermissions',
+  ],
+};
 </script>
