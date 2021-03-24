@@ -83,7 +83,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install yarn dependencies
-        run: yarn inst
+        run: yarn install
       - name: Lint files
         run: yarn run lint:all
       - name: Build assets
