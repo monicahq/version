@@ -68,6 +68,5 @@ class ApiGetReleaseTest extends TestCase
         $response->assertJsonFragment([
             'count' => 10,
         ]);
-        $response->assertJsonCount(10);
     }
 }
