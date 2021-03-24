@@ -93,10 +93,10 @@ class ApiReleaseController extends Controller
      * Delete the given release.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $releaseId
+     * @param  int  $releaseId
      * @return \Illuminate\Http\JsonResponse|true
      */
-    public function destroy(Request $request, $releaseId)
+    public function destroy(Request $request, int $releaseId)
     {
         try {
             app(DestroyRelease::class)->execute([
