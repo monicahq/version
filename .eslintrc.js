@@ -75,6 +75,7 @@ module.exports = {
             }
         ],
 
+        "vue/no-v-model-argument": 1,
         "vue/no-v-html" : 0,
         "vue/max-attributes-per-line": [
             // https://vuejs.org/v2/style-guide/#Multi-attribute-elements-strongly-recommended
