@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
 use App\Models\Release;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Services\Release\UpdateRelease;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
+use Tests\TestCase;
 
 class UpdateReleaseTest extends TestCase
 {
@@ -21,16 +21,16 @@ class UpdateReleaseTest extends TestCase
             'release_id' => $release->id,
             'version' => '1',
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $new_release = (new UpdateRelease)->execute($request);
 
-        $this->assertDatabaseHas('releases',[
+        $this->assertDatabaseHas('releases', [
             'id' => $new_release->id,
             'version' => '1',
             'released_on' => '2021-01-01 00:00:00',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ]);
     }
 
@@ -40,7 +40,7 @@ class UpdateReleaseTest extends TestCase
         $request = [
             'version' => '1',
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);
@@ -60,7 +60,7 @@ class UpdateReleaseTest extends TestCase
             'release_id' => -1,
             'version' => '1',
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);
@@ -81,7 +81,7 @@ class UpdateReleaseTest extends TestCase
         $request = [
             'release_id' => $release->id,
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);
@@ -102,7 +102,7 @@ class UpdateReleaseTest extends TestCase
         $request = [
             'release_id' => $release->id,
             'version' => '1',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);

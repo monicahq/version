@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiPingController;
 use App\Http\Controllers\Api\ApiReleaseController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Route::post('ping', [ApiPingController::class, 'ping']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::name('api.')->group(function () {
         Route::apiResource('api/releases', ApiReleaseController::class)->only([
-            'index', 'store'
+            'index', 'store',
         ]);
     });
 });
