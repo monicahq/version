@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 class Setup extends Command
 {
@@ -43,7 +43,7 @@ class Setup extends Command
                 $this->artisan('✓ Clear config cache', 'config:clear');
                 $this->artisan('✓ Resetting route cache', 'route:cache');
                 $this->artisan('✓ Resetting view cache', 'view:clear');
-                // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
             } else {
                 $this->artisan('✓ Clear config cache', 'config:clear');
                 $this->artisan('✓ Clear route cache', 'route:clear');

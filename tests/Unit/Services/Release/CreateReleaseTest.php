@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
+use App\Services\Release\CreateRelease;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Services\Release\CreateRelease;
 use Illuminate\Validation\ValidationException;
+use Tests\TestCase;
 
 class CreateReleaseTest extends TestCase
 {
@@ -18,16 +18,16 @@ class CreateReleaseTest extends TestCase
         $request = [
             'version' => '1',
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $release = (new CreateRelease)->execute($request);
 
-        $this->assertDatabaseHas('releases',[
+        $this->assertDatabaseHas('releases', [
             'id' => $release->id,
             'version' => '1',
             'released_on' => '2021-01-01 00:00:00',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ]);
     }
 
@@ -36,7 +36,7 @@ class CreateReleaseTest extends TestCase
     {
         $request = [
             'released_on' => '2021-01-01',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);
@@ -54,7 +54,7 @@ class CreateReleaseTest extends TestCase
     {
         $request = [
             'version' => '1',
-            'notes' => 'notes'
+            'notes' => 'notes',
         ];
 
         $this->expectException(ValidationException::class);

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Release;
-use Illuminate\Http\Request;
 use App\Services\Release\CreateRelease;
-use App\Services\Release\UpdateRelease;
 use App\Services\Release\DestroyRelease;
+use App\Services\Release\UpdateRelease;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Laravel\Jetstream\Jetstream;
 
@@ -21,7 +21,7 @@ class ReleaseController extends Controller
     public function index(Request $request)
     {
         return Jetstream::inertia()->render($request, 'Releases', [
-            'releases' => Release::orderBy('id', 'desc')->get()
+            'releases' => Release::orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class ReleaseController extends Controller
         );
 
         return back()->with(['flash' => [
-            'release' => $release]
+            'release' => $release, ],
         ]);
     }
 
@@ -61,12 +61,12 @@ class ReleaseController extends Controller
                 'notes',
                 'released_on',
             ]) + [
-                'release_id' => $releaseId
+                'release_id' => $releaseId,
             ]
         );
 
         return back(303)->with(['flash' => [
-            'release' => $release]
+            'release' => $release, ],
         ]);
     }
 
@@ -80,8 +80,8 @@ class ReleaseController extends Controller
     public function destroy(Request $request, $releaseId)
     {
         app(DestroyRelease::class)->execute([
-                'release_id' => $releaseId
-            ]);
+            'release_id' => $releaseId,
+        ]);
 
         return back(303);
     }

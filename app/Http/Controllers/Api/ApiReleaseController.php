@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Release;
-use Illuminate\Http\Request;
 use App\Services\Release\CreateRelease;
-use App\Services\Release\UpdateRelease;
 use App\Services\Release\DestroyRelease;
+use App\Services\Release\UpdateRelease;
 use App\Traits\JsonRespondController;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class ApiReleaseController extends Controller
@@ -27,7 +27,7 @@ class ApiReleaseController extends Controller
 
         return $this->respond([
             'data' => $releases,
-            'count' => $releases->count()
+            'count' => $releases->count(),
         ]);
     }
 
@@ -54,8 +54,9 @@ class ApiReleaseController extends Controller
         }
 
         $this->setHTTPStatusCode(201);
+
         return $this->respond([
-            'data' => $release
+            'data' => $release,
         ]);
     }
 
@@ -75,7 +76,7 @@ class ApiReleaseController extends Controller
                     'notes',
                     'released_on',
                 ]) + [
-                    'release_id' => $releaseId
+                    'release_id' => $releaseId,
                 ]
             );
         } catch (ValidationException $e) {
@@ -85,7 +86,7 @@ class ApiReleaseController extends Controller
         }
 
         return $this->respond([
-            'data' => $release
+            'data' => $release,
         ]);
     }
 
@@ -100,7 +101,7 @@ class ApiReleaseController extends Controller
     {
         try {
             app(DestroyRelease::class)->execute([
-                'release_id' => $releaseId
+                'release_id' => $releaseId,
             ]);
         } catch (ValidationException $e) {
             return $this->respondValidatorFailed($e->validator);

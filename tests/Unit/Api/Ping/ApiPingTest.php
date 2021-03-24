@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
 use App\Models\Host;
 use App\Models\Release;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ApiPingTest extends TestCase
 {
@@ -28,7 +28,7 @@ class ApiPingTest extends TestCase
         $response = $this->json('POST', '/ping', [
             'uuid' => '1',
             'version' => '1.0.0',
-            'contacts' => '10'
+            'contacts' => '10',
         ]);
 
         $response->assertOk();
@@ -65,7 +65,7 @@ class ApiPingTest extends TestCase
         $response = $this->json('POST', '/ping', [
             'uuid' => $host->uuid,
             'version' => '1.0.0',
-            'contacts' => '10'
+            'contacts' => '10',
         ]);
 
         $response->assertOk();
@@ -87,13 +87,13 @@ class ApiPingTest extends TestCase
         ]);
         Release::factory()->create([
             'version' => '2.0.0',
-            'notes' => 'the notes'
+            'notes' => 'the notes',
         ]);
 
         $response = $this->json('POST', '/ping', [
             'uuid' => 'a',
             'version' => '1.0.0',
-            'contacts' => '10'
+            'contacts' => '10',
         ]);
 
         $response->assertJsonFragment([
@@ -112,17 +112,17 @@ class ApiPingTest extends TestCase
         ]);
         Release::factory()->create([
             'version' => '2.0.0',
-            'notes' => 'the notes'
+            'notes' => 'the notes',
         ]);
         Release::factory()->create([
             'version' => '2.1.0',
-            'notes' => 'the incredible notes'
+            'notes' => 'the incredible notes',
         ]);
 
         $response = $this->json('POST', '/ping', [
             'uuid' => 'a',
             'version' => '1.0.0',
-            'contacts' => '10'
+            'contacts' => '10',
         ]);
 
         $response->assertJsonFragment([

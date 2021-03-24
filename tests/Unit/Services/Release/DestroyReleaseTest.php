@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services\Release;
 
-use Tests\TestCase;
 use App\Models\Release;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Services\Release\DestroyRelease;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
+use Tests\TestCase;
 
 class DestroyReleaseTest extends TestCase
 {
@@ -23,7 +23,7 @@ class DestroyReleaseTest extends TestCase
 
         (new DestroyRelease)->execute($request);
 
-        $this->assertDatabaseMissing('releases',[
+        $this->assertDatabaseMissing('releases', [
             'id' => $release->id,
         ]);
     }
