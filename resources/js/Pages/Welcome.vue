@@ -18,7 +18,7 @@
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <p class="text-center text-gray-400 font-thin text-9xl mb-6">
+                <p class="text-center text-gray-400 font-thin text-8xl mb-6 title">
                     Nothing to see here.
                 </p>
             </div>
@@ -36,6 +36,10 @@
     .bg-gray-100 {
         background-color: #f7fafc;
         background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
+    }
+
+    .title {
+        font-family: 'Raleway', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
 
     @media (prefers-color-scheme: dark) {
