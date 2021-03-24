@@ -170,7 +170,7 @@ trait JsonRespondController
     {
         return $this->respond([
             'error' => [
-                'message' => $message ?? config('api.error_codes.'.$this->getErrorCode()),
+                'message' => $message,
                 'error_code' => $this->getErrorCode(),
             ],
         ]);
