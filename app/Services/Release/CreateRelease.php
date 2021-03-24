@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Release;
 
 use App\Models\Release;
+use App\Services\BaseService;
 
 class CreateRelease extends BaseService
 {

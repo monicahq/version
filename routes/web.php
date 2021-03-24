@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('releases', ReleaseController::class)->only([
-        'index', 'create', 'store', 'update'
+        'index', 'create', 'store', 'update', 'destroy'
     ]);
 
 });

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Release;
 use Illuminate\Http\Request;
-use App\Services\CreateRelease;
+use App\Services\Release\CreateRelease;
+use App\Services\Release\UpdateRelease;
+use App\Services\Release\DestroyRelease;
 use App\Traits\JsonRespondController;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
@@ -21,7 +23,12 @@ class ApiReleaseController extends Controller
      */
     public function index()
     {
-        return $this->respond(Release::orderBy('id', 'desc')->get());
+        $releases = Release::orderBy('id', 'desc')->get();
+
+        return $this->respond([
+            'data' => $releases,
+            'count' => $releases->count()
+        ]);
     }
 
     /**
@@ -47,6 +54,60 @@ class ApiReleaseController extends Controller
         }
 
         $this->setHTTPStatusCode(201);
-        return $this->respond($release);
+        return $this->respond([
+            'data' => $release
+        ]);
+    }
+
+    /**
+     * Update the given release.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $releaseId
+     * @return \Illuminate\Http\JsonResponse|true
+     */
+    public function update(Request $request, $releaseId)
+    {
+        try {
+            $release = app(UpdateRelease::class)->execute(
+                $request->only([
+                    'version',
+                    'notes',
+                    'released_on',
+                ]) + [
+                    'release_id' => $releaseId
+                ]
+            );
+        } catch (ValidationException $e) {
+            return $this->respondValidatorFailed($e->validator);
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery();
+        }
+
+        return $this->respond([
+            'data' => $release
+        ]);
+    }
+
+    /**
+     * Delete the given release.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $releaseId
+     * @return \Illuminate\Http\JsonResponse|true
+     */
+    public function destroy(Request $request, $releaseId)
+    {
+        try {
+            app(DestroyRelease::class)->execute([
+                'release_id' => $releaseId
+            ]);
+        } catch (ValidationException $e) {
+            return $this->respondValidatorFailed($e->validator);
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery();
+        }
+
+        return $this->respondObjectDeleted($releaseId);
     }
 }
