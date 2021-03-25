@@ -6,6 +6,8 @@ composer:
     # Resolves to the --no-dev parameter
     no-dev: true
 
+pre: CleanVendor.php
+
 # called after Composer runs
 post: artisan setup --force -vvv
 
