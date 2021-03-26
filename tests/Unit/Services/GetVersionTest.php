@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Services\Release;
+namespace Tests\Unit\Services;
 
 use App\Models\Release;
 use App\Services\GetVersion;
