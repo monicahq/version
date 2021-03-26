@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Services\Release;
+namespace Tests\Unit\Api\Ping;
 
 use App\Models\Host;
 use App\Models\Release;

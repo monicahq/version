@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Services\Release;
+namespace Tests\Unit\Api\Release;
 
 use App\Models\Release;
 use App\Models\User;
