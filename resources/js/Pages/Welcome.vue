@@ -18,13 +18,13 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-        <p class="text-center text-gray-400 font-thin text-8xl mb-6 title">
+        <p class="text-center text-gray-600 dark:text-gray-400 font-thin text-8xl mb-6 title">
           Nothing to see here.
         </p>
       </div>
 
       <div class="flex justify-center mt-4 sm:items-center">
-        <p class="text-center text-gray-100 text-lg font-semibold tracking-widest uppercase">
+        <p class="text-center text-gray-400 dark:text-gray-100 text-lg font-semibold tracking-widest uppercase">
           <a class="no-underline" href="https://monicahq.com">Visit https://monicahq.com instead</a>
         </p>
       </div>
