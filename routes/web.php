@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ReleaseController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,7 +23,5 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('releases', ReleaseController::class)->only([
-        'index', 'create', 'store', 'update', 'destroy',
-    ]);
+    Route::resource('releases', ReleaseController::class);
 });

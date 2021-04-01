@@ -211,7 +211,7 @@ export default {
       createApiTokenForm: this.$inertia.form({
         name: '',
         permissions: this.defaultPermissions,
-      }),
+      }, {remember: false}),
 
       updateApiTokenForm: this.$inertia.form({
         permissions: []
