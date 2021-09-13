@@ -11,7 +11,7 @@ class CreatePing extends BaseService
     /**
      * Get the validation rules that apply to the service.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     public function rules(array $data)
@@ -26,7 +26,7 @@ class CreatePing extends BaseService
     /**
      * Create a ping.
      *
-     * @param array $data
+     * @param  array  $data
      * @return void
      */
     public function execute(array $data): void
