@@ -34,7 +34,7 @@ class ApiReleaseController extends Controller
     /**
      * Create a new release.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse|true
      */
     public function store(Request $request)
