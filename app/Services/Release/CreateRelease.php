@@ -10,7 +10,7 @@ class CreateRelease extends BaseService
     /**
      * Get the validation rules that apply to the service.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     public function rules(array $data)
@@ -25,7 +25,7 @@ class CreateRelease extends BaseService
     /**
      * Create a release.
      *
-     * @param array $data
+     * @param  array  $data
      * @return Release
      */
     public function execute(array $data): Release
