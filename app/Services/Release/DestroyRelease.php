@@ -10,7 +10,7 @@ class DestroyRelease extends BaseService
     /**
      * Get the validation rules that apply to the service.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     public function rules(array $data)
@@ -23,7 +23,7 @@ class DestroyRelease extends BaseService
     /**
      * Delete a release.
      *
-     * @param array $data
+     * @param  array  $data
      * @return bool
      */
     public function execute(array $data): bool
