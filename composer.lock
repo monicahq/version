@@ -1951,6 +1951,65 @@
             "time": "2021-11-30T15:53:04+00:00"
         },
         {
+            "name": "laravel/serializable-closure",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/serializable-closure.git",
+                "reference": "25de3be1bca1b17d52ff0dc02b646c667ac7266c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/25de3be1bca1b17d52ff0dc02b646c667ac7266c",
+                "reference": "25de3be1bca1b17d52ff0dc02b646c667ac7266c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.18",
+                "phpstan/phpstan": "^0.12.98",
+                "symfony/var-dumper": "^5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\SerializableClosure\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Nuno Maduro",
+                    "email": "nuno@laravel.com"
+                }
+            ],
+            "description": "Laravel Serializable Closure provides an easy and secure way to serialize closures in PHP.",
+            "keywords": [
+                "closure",
+                "laravel",
+                "serializable"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/serializable-closure/issues",
+                "source": "https://github.com/laravel/serializable-closure"
+            },
+            "time": "2021-11-30T15:53:04+00:00"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v2.6.3",
             "source": {
@@ -8945,16 +9004,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.7.12",
+            "version": "v0.7.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "b2da312efe88d501aeeb867ba857e8c4198d43c0"
+                "reference": "fffd371277aeca7951a841818d21f1015a0a2662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/b2da312efe88d501aeeb867ba857e8c4198d43c0",
-                "reference": "b2da312efe88d501aeeb867ba857e8c4198d43c0",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/fffd371277aeca7951a841818d21f1015a0a2662",
+                "reference": "fffd371277aeca7951a841818d21f1015a0a2662",
                 "shasum": ""
             },
             "require": {
@@ -8973,6 +9032,7 @@
                 "symfony/process": "^4.3 || ^5.0 || ^6.0"
             },
             "require-dev": {
+                "nikic/php-parser": "4.12.0",
                 "orchestra/testbench": "^4.0 || ^5.0 || ^6.0 || ^7.0",
                 "phpunit/phpunit": "^7.3 || ^8.2 || ^9.3"
             },
@@ -8982,7 +9042,7 @@
             "type": "phpstan-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6-dev"
+                    "dev-master": "0.7-dev"
                 },
                 "phpstan": {
                     "includes": [
@@ -9018,7 +9078,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.12"
+                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.15"
             },
             "funding": [
                 {
@@ -9038,7 +9098,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-07-26T12:12:39+00:00"
+            "time": "2021-10-26T11:07:56+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
