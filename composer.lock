@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d501f5bf64123319b394bbde56ff2f31",
+    "content-hash": "3bd65c28996674ea86441bdbb4d28dc0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2268,28 +2268,28 @@
         },
         {
             "name": "monicahq/laravel-cloudflare",
-            "version": "1.8.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monicahq/laravel-cloudflare.git",
-                "reference": "3ccdec99a9431de638653af4f693efef12dbe5f0"
+                "reference": "34eb0d77ece88230c74ddaa7db025a8859c8c5d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monicahq/laravel-cloudflare/zipball/3ccdec99a9431de638653af4f693efef12dbe5f0",
-                "reference": "3ccdec99a9431de638653af4f693efef12dbe5f0",
+                "url": "https://api.github.com/repos/monicahq/laravel-cloudflare/zipball/34eb0d77ece88230c74ddaa7db025a8859c8c5d3",
+                "reference": "34eb0d77ece88230c74ddaa7db025a8859c8c5d3",
                 "shasum": ""
             },
             "require": {
                 "fideloper/proxy": "^4.4",
-                "guzzlehttp/guzzle": "^6.3 || ^7.0",
-                "illuminate/console": "^5.5 || ^6.0 || ^7.0 || ^8.0",
-                "illuminate/http": "^5.5 || ^6.0 || ^7.0 || ^8.0",
-                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/console": "^7.0 || ^8.0",
+                "illuminate/http": "^7.0 || ^8.0",
+                "illuminate/support": "^7.0 || ^8.0",
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "laravel/framework": "^5.5 || ^6.0 || ^7.0 || ^8.0",
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "laravel/framework": "^7.0 || ^8.0",
                 "mockery/mockery": "^1.4",
                 "nunomaduro/larastan": "^0",
                 "ocramius/package-versions": "^1.5 || ^2.1",
@@ -2300,6 +2300,9 @@
                 "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0",
                 "thecodingmachine/phpstan-safe-rule": "^1.0",
                 "vimeo/psalm": "^3.9 || ^4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Required to get cloudflares ip addresses (^6.5.5|^7.0.1)."
             },
             "type": "library",
             "extra": {
@@ -2341,7 +2344,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-13T19:22:19+00:00"
+            "time": "2021-07-14T15:29:44+00:00"
         },
         {
             "name": "monolog/monolog",
