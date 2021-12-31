@@ -34,27 +34,17 @@ class AggregateMonth extends BaseService
 
         $date = Carbon::parse($data['date'])->startOfMonth();
 
-        $count = DB::table('pings')
+        $pings = DB::table('pings')
             ->from(function ($query) use ($date) {
                 return $query
-                    ->select('uuid')
+                    ->select('host_id', DB::raw('MAX(number_of_contacts) as number'))
                     ->from('pings')
                     ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
                     ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                    ->groupBy('uuid');
-            })
-            ->count();
-
-        $sum = DB::table('pings')
-            ->from(function ($query) use ($date) {
-                return $query
-                    ->select('uuid', DB::raw('MAX(number_of_contacts) as number'))
-                    ->from('pings')
-                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
-                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                    ->groupBy('uuid');
-            }, 't')
-            ->sum('t.number');
+                    ->groupBy('host_id');
+            }, 't');
+        $count = $pings->count();
+        $sum = $pings->sum('t.number');
 
         if ($count > 0) {
             $week = AggregateContactsMonth::firstOrCreate(

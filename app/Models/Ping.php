@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ping extends Model
 {
@@ -13,7 +14,6 @@ class Ping extends Model
      */
     protected $fillable = [
         'host_id',
-        'uuid',
         'version',
         'number_of_contacts',
     ];
@@ -26,4 +26,14 @@ class Ping extends Model
     protected $casts = [
         'number_of_contacts' => 'integer',
     ];
+
+    /**
+     * Get the account record associated with the call.
+     *
+     * @return BelongsTo
+     */
+    public function host()
+    {
+        return $this->belongsTo(Host::class);
+    }
 }

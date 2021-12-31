@@ -10,12 +10,9 @@ use App\Services\Aggregate\AggregateDay;
 use App\Services\Aggregate\AggregateMonth;
 use App\Services\Aggregate\AggregateWeek;
 use Illuminate\Console\Command;
-use Illuminate\Console\ConfirmableTrait;
 
 class Aggregate extends Command
 {
-    use ConfirmableTrait;
-
     /**
      * The name and signature of the console command.
      *

@@ -16,6 +16,9 @@ class AddIndexes extends Migration
         Schema::table('pings', function (Blueprint $table) {
             $table->index('created_at');
         });
+        Schema::table('hosts', function (Blueprint $table) {
+            $table->index('uuid');
+        });
     }
 
     /**
@@ -27,6 +30,9 @@ class AddIndexes extends Migration
     {
         Schema::table('pings', function (Blueprint $table) {
             $table->dropIndex(['created_at']);
+        });
+        Schema::table('hosts', function (Blueprint $table) {
+            $table->dropIndex(['uuid']);
         });
     }
 }

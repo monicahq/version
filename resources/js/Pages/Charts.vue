@@ -4,25 +4,13 @@
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Charts
       </h2>
-      <a
-        href="#"
-        class="text-sm text-gray-700 underline"
-        @click.prevent="selected = 'days'"
-      >
+      <a href="#" class="text-lg text-gray-700 mx-2" :class="{underline: selected != 'days'}" @click.prevent="selected = 'days'">
         Day
       </a>
-      <a
-        href="#"
-        class="text-sm text-gray-700 underline"
-        @click.prevent="selected = 'weeks'"
-      >
+      <a href="#" class="text-lg text-gray-700 mx-2" :class="{underline: selected != 'weeks'}" @click.prevent="selected = 'weeks'">
         Week
       </a>
-      <a
-        href="#"
-        class="text-sm text-gray-700 underline"
-        @click.prevent="selected = 'months'"
-      >
+      <a href="#" class="text-lg text-gray-700 mx-2" :class="{underline: selected != 'months'}" @click.prevent="selected = 'months'">
         Month
       </a>
     </template>
