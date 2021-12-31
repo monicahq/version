@@ -18,7 +18,7 @@ class AggregateMonth extends BaseService
     public function rules(array $data)
     {
         return [
-            'date' => 'date|required'
+            'date' => 'date|required',
         ];
     }
 
@@ -42,7 +42,7 @@ class AggregateMonth extends BaseService
                     ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
                     ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
                     ->groupBy('uuid');
-                })
+            })
             ->count();
 
         $sum = DB::table('pings')
@@ -53,7 +53,7 @@ class AggregateMonth extends BaseService
                     ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
                     ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
                     ->groupBy('uuid');
-                }, 't')
+            }, 't')
             ->sum('t.number');
 
         if ($count > 0) {

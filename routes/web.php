@@ -28,6 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         'index', 'create', 'store', 'update', 'destroy',
     ]);
     Route::resource('charts', ChartsController::class)->only([
-        'index'
+        'index',
     ]);
 });
