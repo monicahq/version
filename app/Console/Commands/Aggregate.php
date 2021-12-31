@@ -12,7 +12,7 @@ use App\Services\Aggregate\AggregateWeek;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 
-class Setup extends Command
+class Aggregate extends Command
 {
     use ConfirmableTrait;
 
