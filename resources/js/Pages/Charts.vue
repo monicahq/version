@@ -1,7 +1,9 @@
 <template>
   <app-layout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">Charts</h2>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        Charts
+      </h2>
       <a
         href="#"
         class="text-sm text-gray-700 underline"
