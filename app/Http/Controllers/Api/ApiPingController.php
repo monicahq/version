@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Release;
 use App\Services\GetVersion;
 use App\Services\Ping\CreatePing;
 use App\Traits\JsonRespondController;
