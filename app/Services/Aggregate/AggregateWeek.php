@@ -60,7 +60,7 @@ class AggregateWeek extends BaseService
                             ->where('created_at', '<', $date->format('Y-m-d 00:00:00'))
                             ->groupBy('host_id')
                             ->get();
-                        })
+                    })
                     ->groupBy('host_id');
             })
             ->count();
@@ -78,11 +78,10 @@ class AggregateWeek extends BaseService
                             ->where('created_at', '>=', $date->copy()->addWeek()->startOfWeek()->format('Y-m-d 00:00:00'))
                             ->groupBy('host_id')
                             ->get();
-                        })
+                    })
                     ->groupBy('host_id');
             })
             ->count() : null;
-
 
         if ($count > 0) {
             $week = AggregateContactsWeek::firstOrCreate(
