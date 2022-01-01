@@ -49,7 +49,6 @@ class ApiPingTest extends TestCase
         $this->assertDatabaseHas('pings', [
             'host_id' => $host->id,
             'version' => '1.0.0',
-            'uuid' => '1',
             'number_of_contacts' => 10,
         ]);
     }
@@ -74,7 +73,6 @@ class ApiPingTest extends TestCase
         $this->assertDatabaseHas('pings', [
             'host_id' => $host->id,
             'version' => '1.0.0',
-            'uuid' => $host->uuid,
             'number_of_contacts' => 10,
         ]);
     }

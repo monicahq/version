@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Api\Release;
 
-use App\Models\Release;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;

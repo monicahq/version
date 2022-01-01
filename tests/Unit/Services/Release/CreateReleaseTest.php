@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Release;
 
 use App\Services\Release\CreateRelease;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
