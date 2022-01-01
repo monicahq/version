@@ -2,10 +2,10 @@
 
 namespace App\Services\Aggregate;
 
+use App\Helpers\PingsCount;
 use App\Models\AggregateContactsMonth;
 use App\Services\BaseService;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class AggregateMonth extends BaseService
 {
@@ -32,60 +32,16 @@ class AggregateMonth extends BaseService
     {
         $this->validate($data);
 
-        $date = Carbon::parse($data['date'])->startOfMonth();
+        $date_min = Carbon::parse($data['date'])->startOfMonth();
+        $date_max = $date_min->copy()->addMonth()->startOfMonth();
 
-        $pings = DB::table('pings')
-            ->from(function ($query) use ($date) {
-                return $query
-                    ->select('host_id', DB::raw('MAX(number_of_contacts) as number'))
-                    ->from('pings')
-                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
-                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                    ->groupBy('host_id');
-            }, 't');
-        $count = $pings->count();
-        $sum = $pings->sum('t.number');
-
-        $new = DB::table('pings')
-            ->from(function ($query) use ($date) {
-                return $query
-                    ->select('host_id')
-                    ->from('pings')
-                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
-                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                    ->whereNotIn('host_id', function ($query) use ($date) {
-                        return $query
-                            ->select('host_id')
-                            ->from('pings')
-                            ->where('created_at', '<', $date->format('Y-m-d 00:00:00'))
-                            ->groupBy('host_id')
-                            ->get();
-                    })
-                    ->groupBy('host_id');
-            })
-            ->count();
-        $stale = $date->copy()->addMonth() < now() ? DB::table('pings')
-            ->from(function ($query) use ($date) {
-                return $query
-                    ->select('host_id')
-                    ->from('pings')
-                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
-                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                    ->whereNotIn('host_id', function ($query) use ($date) {
-                        return $query
-                            ->select('host_id')
-                            ->from('pings')
-                            ->where('created_at', '>=', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
-                            ->groupBy('host_id')
-                            ->get();
-                    })
-                    ->groupBy('host_id');
-            })
-            ->count() : null;
+        [$count, $sum] = app(PingsCount::class)->getCounts($date_min, $date_max);
+        $new = app(PingsCount::class)->getNews($date_min, $date_max);
+        $stale = app(PingsCount::class)->getStales($date_min, $date_max);
 
         if ($count > 0) {
             $week = AggregateContactsMonth::firstOrCreate(
-                ['date' => $date],
+                ['date' => $date_min],
             );
             $week->count = $count;
             $week->new = $new;

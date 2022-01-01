@@ -2,10 +2,10 @@
 
 namespace App\Services\Aggregate;
 
+use App\Helpers\PingsCount;
 use App\Models\AggregateContactsDay;
 use App\Services\BaseService;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class AggregateDay extends BaseService
 {
@@ -32,23 +32,14 @@ class AggregateDay extends BaseService
     {
         $this->validate($data);
 
-        $date = Carbon::parse($data['date'])->startOfDay();
+        $date_min = Carbon::parse($data['date'])->startOfDay();
+        $date_max = $date_min->copy()->addDay();
 
-        $pings = DB::table('pings')
-            ->from(function ($query) use ($date) {
-                return $query
-                    ->select('host_id', DB::raw('MAX(number_of_contacts) as number'))
-                    ->from('pings')
-                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
-                    ->where('created_at', '<', $date->copy()->addDay()->format('Y-m-d 00:00:00'))
-                    ->groupBy('host_id');
-            }, 't');
-        $count = $pings->count();
-        $sum = $pings->sum('t.number');
+        [$count, $sum] = app(PingsCount::class)->getCounts($date_min, $date_max);
 
         if ($count > 0) {
             $day = AggregateContactsDay::firstOrCreate(
-                ['date' => $date],
+                ['date' => $date_min],
             );
             $day->count = $count;
             $day->number_of_contacts = $sum;
