@@ -37,7 +37,6 @@ class CreatePing extends BaseService
 
         Ping::create([
             'host_id' => $host->id,
-            'uuid' => $data['uuid'],
             'version' => $data['version'],
             'number_of_contacts' => $data['contacts'],
         ]);

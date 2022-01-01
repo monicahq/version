@@ -20,6 +20,9 @@
                 <jet-nav-link :href="route('releases.index')" :active="route().current('releases.index')">
                   Releases
                 </jet-nav-link>
+                <jet-nav-link :href="route('charts.index')" :active="route().current('charts.index')">
+                  Charts
+                </jet-nav-link>
               </div>
             </div>
 
@@ -145,6 +148,9 @@
           <div class="pt-2 pb-3 space-y-1">
             <jet-responsive-nav-link :href="route('releases.index')" :active="route().current('releases.index')">
               Releases
+            </jet-responsive-nav-link>
+            <jet-responsive-nav-link :href="route('charts.index')" :active="route().current('charts.index')">
+              Charts
             </jet-responsive-nav-link>
           </div>
 

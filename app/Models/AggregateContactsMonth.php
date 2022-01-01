@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Ping extends Model
+class AggregateContactsMonth extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,8 +12,10 @@ class Ping extends Model
      * @var string[]
      */
     protected $fillable = [
-        'host_id',
-        'version',
+        'date',
+        'count',
+        'new',
+        'stale',
         'number_of_contacts',
     ];
 
@@ -24,16 +25,6 @@ class Ping extends Model
      * @var array
      */
     protected $casts = [
-        'number_of_contacts' => 'integer',
+        'date' => 'datetime:Y-m-d',
     ];
-
-    /**
-     * Get the account record associated with the call.
-     *
-     * @return BelongsTo
-     */
-    public function host()
-    {
-        return $this->belongsTo(Host::class);
-    }
 }
