@@ -12,7 +12,6 @@
         "lint:fix": "yarn lint --fix"
     },
     "devDependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@inertiajs/inertia": "^0.8.4",
         "@inertiajs/inertia-vue3": "^0.3.5",
         "@inertiajs/progress": "^0.2.4",
