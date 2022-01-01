@@ -14,6 +14,8 @@ class AggregateContactsMonth extends Model
     protected $fillable = [
         'date',
         'count',
+        'new',
+        'stale',
         'number_of_contacts',
     ];
 

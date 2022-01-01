@@ -16,8 +16,8 @@ class CreateAggregate extends Migration
         Schema::create('aggregate_contacts_days', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->integer('count')->default(0);
-            $table->integer('number_of_contacts')->default(0);
+            $table->unsignedInteger('count')->default(0);
+            $table->unsignedInteger('number_of_contacts')->default(0);
             $table->timestamps();
 
             $table->index('date');
@@ -25,8 +25,10 @@ class CreateAggregate extends Migration
         Schema::create('aggregate_contacts_weeks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->integer('count')->default(0);
-            $table->integer('number_of_contacts')->default(0);
+            $table->unsignedInteger('count')->default(0);
+            $table->unsignedInteger('new')->default(0);
+            $table->unsignedInteger('stale')->default(0);
+            $table->unsignedInteger('number_of_contacts')->default(0);
             $table->timestamps();
 
             $table->index('date');
@@ -34,8 +36,10 @@ class CreateAggregate extends Migration
         Schema::create('aggregate_contacts_months', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->integer('count')->default(0);
-            $table->integer('number_of_contacts')->default(0);
+            $table->unsignedInteger('count')->default(0);
+            $table->unsignedInteger('new')->default(0);
+            $table->unsignedInteger('stale')->default(0);
+            $table->unsignedInteger('number_of_contacts')->default(0);
             $table->timestamps();
 
             $table->index('date');

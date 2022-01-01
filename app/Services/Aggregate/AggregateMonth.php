@@ -46,11 +46,50 @@ class AggregateMonth extends BaseService
         $count = $pings->count();
         $sum = $pings->sum('t.number');
 
+        $new = DB::table('pings')
+            ->from(function ($query) use ($date) {
+                return $query
+                    ->select('host_id')
+                    ->from('pings')
+                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
+                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
+                    ->whereNotIn('host_id', function ($query) use ($date) {
+                        return $query
+                            ->select('host_id')
+                            ->from('pings')
+                            ->where('created_at', '<', $date->format('Y-m-d 00:00:00'))
+                            ->groupBy('host_id')
+                            ->get();
+                        })
+                    ->groupBy('host_id');
+            })
+            ->count();
+        $stale = $date->copy()->addMonth() < now() ? DB::table('pings')
+            ->from(function ($query) use ($date) {
+                return $query
+                    ->select('host_id')
+                    ->from('pings')
+                    ->where('created_at', '>=', $date->format('Y-m-d 00:00:00'))
+                    ->where('created_at', '<', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
+                    ->whereNotIn('host_id', function ($query) use ($date) {
+                        return $query
+                            ->select('host_id')
+                            ->from('pings')
+                            ->where('created_at', '>=', $date->copy()->addMonth()->startOfMonth()->format('Y-m-d 00:00:00'))
+                            ->groupBy('host_id')
+                            ->get();
+                        })
+                    ->groupBy('host_id');
+            })
+            ->count() : null;
+
         if ($count > 0) {
             $week = AggregateContactsMonth::firstOrCreate(
                 ['date' => $date],
             );
             $week->count = $count;
+            $week->new = $new;
+            $week->stale = $stale;
             $week->number_of_contacts = $sum;
             $week->save();
         }

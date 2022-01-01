@@ -71,20 +71,40 @@ export default {
 
         chart: {
           height: 600,
+          zoomType: 'xy'
+        },
+
+        tooltip: {
+          shared: true
         },
 
         series: [
           {
-            data: this.$props[s].map((d) => [
-              Date.parse(d.date),
-              d.number_of_contacts,
-            ]),
+            data: this.$props[s].map((d) => [d.date, d.number_of_contacts]),
             name: 'Contacts',
           },
           {
-            data: this.$props[s].map((d) => [Date.parse(d.date), d.count]),
+            data: this.$props[s].map((d) => [d.date, d.count]),
             name: 'Instances',
             yAxis: 1,
+          },
+          {
+            data: this.$props[s].map((d) => [d.date, Math.round(d.new / d.count * 10000) / 100]),
+            name: 'New',
+            type: 'column',
+            yAxis: 2,
+            tooltip: {
+              valueSuffix: '%'
+            },
+          },
+          {
+            data: this.$props[s].map((d) => [d.date, Math.round(d.stale / d.count * 10000) / 100]),
+            name: 'Stale',
+            type: 'column',
+            yAxis: 3,
+            tooltip: {
+              valueSuffix: '%'
+            },
           },
         ],
 
@@ -99,9 +119,6 @@ export default {
             },
             height: '70%',
             lineWidth: 2,
-            resize: {
-              enabled: true,
-            },
           },
           {
             labels: {
@@ -114,7 +131,29 @@ export default {
             top: '75%',
             height: '25%',
             offset: 0,
-            lineWidth: 2
+            lineWidth: 2,
+          },
+          {
+            title: {
+              text: 'New',
+            },
+            format: '{value}%',
+            top: '75%',
+            height: '25%',
+            offset: 0,
+            lineWidth: 2,
+            visible: false,
+          },
+          {
+            title: {
+              text: 'Stale',
+            },
+            format: '{value}%',
+            top: '75%',
+            height: '25%',
+            offset: 0,
+            lineWidth: 2,
+            visible: false,
           },
         ],
       };
