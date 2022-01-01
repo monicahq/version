@@ -41,6 +41,12 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'stacksentry' => [
+            'driver' => 'stack',
+            'channels' => ['single', 'sentry'],
+            'ignore_exceptions' => false,
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -52,6 +58,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
+        ],
+
+        'sentry' => [
+            'driver' => 'sentry',
+            'level'  => 'debug',
+            'bubble' => true,
         ],
 
         'slack' => [
