@@ -2,8 +2,8 @@
 
 namespace App\Console\Scheduling;
 
-use Carbon\Carbon;
 use App\Models\Cron;
+use Carbon\Carbon;
 
 class CronEvent
 {

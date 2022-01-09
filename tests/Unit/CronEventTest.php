@@ -2,11 +2,11 @@
 
 namespace Tests\Commands\Scheduling;
 
-use Carbon\Carbon;
-use Tests\TestCase;
-use App\Models\Cron;
 use App\Console\Scheduling\CronEvent;
+use App\Models\Cron;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CronEventTest extends TestCase
 {
