@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Setup;
+use App\Console\Scheduling\CronEvent;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,12 +25,30 @@ class Kernel extends ConsoleKernel
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
+     * @codeCoverageIgnore
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('aggregate')->daily();
+        $this->scheduleCommand($schedule, 'aggregate', 'daily');
         if (config('trustedproxy.cloudflare')) {
-            $schedule->command('cloudflare:reload')->daily(); // @codeCoverageIgnore
+            $this->scheduleCommand($schedule, 'cloudflare:reload', 'daily');
         }
+    }
+
+    /**
+     * Define a new schedule command with a frequency.
+     *
+     * @codeCoverageIgnore
+     */
+    private function scheduleCommand(Schedule $schedule, string $command, $frequency)
+    {
+        $schedule->command($command)->when(function () use ($command, $frequency) {
+            $event = CronEvent::command($command);
+            if ($frequency) {
+                $event = $event->$frequency();
+            }
+
+            return $event->isDue();
+        });
     }
 }
