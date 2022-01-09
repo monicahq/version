@@ -12,7 +12,7 @@ class Cron extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'command',
@@ -22,7 +22,7 @@ class Cron extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var string[]
      */
     protected $casts = [
         'last_run' => 'datetime',
