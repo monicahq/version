@@ -44,7 +44,7 @@ class AggregateWeek extends BaseService
                 ['date' => $date_min],
             );
             $week->count = $count;
-            $week->new = $new ?? 0;
+            $week->new = $new;
             $week->stale = $stale ?? 0;
             $week->number_of_contacts = $sum;
             $week->save();
