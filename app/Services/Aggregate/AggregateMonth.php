@@ -45,7 +45,7 @@ class AggregateMonth extends BaseService
             );
             $week->count = $count;
             $week->new = $new;
-            $week->stale = $stale;
+            $week->stale = $stale ?? 0;
             $week->number_of_contacts = $sum;
             $week->save();
         }
