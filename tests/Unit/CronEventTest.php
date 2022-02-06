@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Commands\Scheduling;
+namespace Tests\Unit;
 
 use App\Console\Scheduling\CronEvent;
 use App\Models\Cron;
