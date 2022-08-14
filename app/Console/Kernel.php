@@ -30,9 +30,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $this->scheduleCommand($schedule, 'aggregate', 'daily');
-        if (config('trustedproxy.cloudflare')) {
-            $this->scheduleCommand($schedule, 'cloudflare:reload', 'daily');
-        }
+        $this->scheduleCommand($schedule, 'cloudflare:reload', 'daily');
     }
 
     /**
