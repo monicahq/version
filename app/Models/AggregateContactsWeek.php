@@ -9,7 +9,7 @@ class AggregateContactsWeek extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $fillable = [
         'date',

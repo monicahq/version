@@ -38,6 +38,7 @@ class AggregateDay extends BaseService
         [$count, $sum] = app(PingsCount::class)->getCounts($date_min, $date_max);
 
         if ($count > 0) {
+            /** @var AggregateContactsDay */
             $day = AggregateContactsDay::firstOrCreate(
                 ['date' => $date_min],
             );

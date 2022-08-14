@@ -40,6 +40,7 @@ class AggregateWeek extends BaseService
         $stale = app(PingsCount::class)->getStales($date_min, $date_max);
 
         if ($count > 0) {
+            /** @var AggregateContactsWeek */
             $week = AggregateContactsWeek::firstOrCreate(
                 ['date' => $date_min],
             );

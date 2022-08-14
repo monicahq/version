@@ -12,7 +12,7 @@ class Release extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $fillable = [
         'version',
