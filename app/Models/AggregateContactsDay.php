@@ -9,7 +9,7 @@ class AggregateContactsDay extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $fillable = [
         'date',
@@ -20,7 +20,7 @@ class AggregateContactsDay extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'date' => 'datetime:Y-m-d',

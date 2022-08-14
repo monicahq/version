@@ -23,7 +23,7 @@ class Aggregate extends Command
     /**
      * The console command description.
      *
-     * @var string|null
+     * @var string
      */
     protected $description = 'Aggregate data';
 

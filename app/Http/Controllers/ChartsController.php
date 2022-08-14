@@ -20,31 +20,25 @@ class ChartsController extends Controller
     public function index(Request $request)
     {
         return Jetstream::inertia()->render($request, 'Charts', [
-            'days' => AggregateContactsDay::all()->map(function ($item) {
-                return [
-                    'date' => $item->date->getTimestampMs(),
-                    'count' => $item->count,
-                    'number_of_contacts' => $item->number_of_contacts,
-                ];
-            }),
-            'weeks' => AggregateContactsWeek::all()->map(function ($item) {
-                return [
-                    'date' => $item->date->getTimestampMs(),
-                    'count' => $item->count,
-                    'new' => $item->new,
-                    'stale' => $item->stale,
-                    'number_of_contacts' => $item->number_of_contacts,
-                ];
-            }),
-            'months' => AggregateContactsMonth::all()->map(function ($item) {
-                return [
-                    'date' => $item->date->getTimestampMs(),
-                    'count' => $item->count,
-                    'new' => $item->new,
-                    'stale' => $item->stale,
-                    'number_of_contacts' => $item->number_of_contacts,
-                ];
-            }),
+            'days' => AggregateContactsDay::all()->map(fn (AggregateContactsDay $item): array => [
+                'date' => $item->date->getTimestampMs(),
+                'count' => $item->count,
+                'number_of_contacts' => $item->number_of_contacts,
+            ]),
+            'weeks' => AggregateContactsWeek::all()->map(fn (AggregateContactsWeek $item): array => [
+                'date' => $item->date->getTimestampMs(),
+                'count' => $item->count,
+                'new' => $item->new,
+                'stale' => $item->stale,
+                'number_of_contacts' => $item->number_of_contacts,
+            ]),
+            'months' => AggregateContactsMonth::all()->map(fn (AggregateContactsMonth $item): array => [
+                'date' => $item->date->getTimestampMs(),
+                'count' => $item->count,
+                'new' => $item->new,
+                'stale' => $item->stale,
+                'number_of_contacts' => $item->number_of_contacts,
+            ]),
         ]);
     }
 }

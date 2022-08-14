@@ -40,6 +40,7 @@ class AggregateMonth extends BaseService
         $stale = app(PingsCount::class)->getStales($date_min, $date_max);
 
         if ($count > 0) {
+            /** @var AggregateContactsMonth */
             $week = AggregateContactsMonth::firstOrCreate(
                 ['date' => $date_min],
             );
