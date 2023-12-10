@@ -9,7 +9,7 @@ on:
     types: [created]
 
 env:
-  default-php-version: '8.1'
+  default-php-version: '8.2'
   coverage-with: 'sqlite'
 
 
@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1']
+        php-version: ['8.2']
         connection: [sqlite, mysql]
         coverage: [true]
 
