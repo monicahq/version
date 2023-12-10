@@ -9,7 +9,7 @@ on:
     types: [created]
 
 env:
-  default-php-version: '8.1'
+  default-php-version: '8.2'
   coverage-with: 'sqlite'
 
 
@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1']
+        php-version: ['8.2']
         connection: [sqlite, mysql]
         coverage: [true]
 
@@ -37,7 +37,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
-          coverage: none
+          coverage: pcov
       - name: Check PHP Version
         run: php -v
       - name: Check Composer Version
@@ -102,7 +102,7 @@ jobs:
     # Test
       - name: Run tests suite with coverage
         if: matrix.connection == env.coverage-with && matrix.php-version == env.default-php-version && matrix.coverage
-        run: phpdbg -dmemory_limit=4G -qrr vendor/bin/phpunit -c phpunit.xml --log-junit ./results/${{ matrix.connection }}/junit/results.xml --coverage-clover ./results/${{ matrix.connection }}/coverage/coverage.xml
+        run: vendor/bin/phpunit -c phpunit.xml --log-junit ./results/${{ matrix.connection }}/junit/results.xml --coverage-clover ./results/${{ matrix.connection }}/coverage/coverage.xml
         env:
           DB_CONNECTION: ${{ matrix.connection }}
       - name: Run tests
@@ -130,7 +130,7 @@ jobs:
     needs: tests
     runs-on: ubuntu-latest
     name: Sonarcloud
-    if: ${{ ! startsWith(github.ref, 'dependabot/') }}
+    if: success() || failure()
 
     steps:
       - name: Checkout repository

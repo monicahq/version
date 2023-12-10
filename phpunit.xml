@@ -12,11 +12,7 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
+    <coverage />
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_DISABLE_SIGNUP" value="false"/>
@@ -32,4 +28,9 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="LARAVEL_CLOUDFLARE_ENABLED" value="false"/>
     </php>
+    <source>
+        <include>
+          <directory suffix=".php">./app</directory>
+        </include>
+      </source>
 </phpunit>
