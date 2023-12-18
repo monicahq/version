@@ -85,7 +85,7 @@ jobs:
         run: yarn run build
 
       - name: Store assets
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: assets
           path: |
