@@ -71,33 +71,26 @@ jobs:
           node-version: ${{ env.node-version }}
           cache: yarn
       - name: Install yarn dependencies
-        run: yarn install
+        run: yarn install --immutable
       - name: Lint files
         run: yarn run lint
-      - name: Build assets
-        run: yarn run production
 
-      - name: Check if there is any file update needed
-        id: check
+      - name: Prepare environment
         run: |
-          status=$(git status --porcelain)
-          if [ -z "$status" ]; then
-            echo "Nothing to push, already up to date."
-          else
-            echo -e "Waiting modifications:\n$status"
-            echo "::error::Resources are not up to date. Please rebuild with: 'yarn run lint:all' and 'yarn run prod'."
-            exit -1
-          fi
+          { \
+            echo "VITE_PROD_SOURCE_MAPS=true"; \
+          } | tee .env
+
+      - name: Build assets
+        run: yarn run build
 
       - name: Store assets
         uses: actions/upload-artifact@v3
         with:
           name: assets
           path: |
-            public/mix-manifest.json
-            public/js
-            public/css
-            public/fonts
+            public/build/**/*
+            !public/build/**/*.map
 
 
   ######################
@@ -125,7 +118,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: assets
-          path: public
+          path: public/build
 
       - name: Configure Git
         run: |
@@ -153,7 +146,8 @@ jobs:
       - name: Deploy
         run: |
           git remote add deploy $REPO_URL
-          git push deploy main:master --force
+          branch=$(git rev-parse --abbrev-ref HEAD)
+          git push deploy $branch:master --force
         env:
           # This avoids a failure when the client does not know the SSH Host already
           GIT_SSH_COMMAND: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"

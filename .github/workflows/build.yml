@@ -69,17 +69,17 @@ jobs:
       - name: Prepare environment
         run: |
           cp tests/.env.ci-${{ matrix.connection }} .env
-          mkdir -p public/js public/css
+          mkdir -p public/build/assets
           {\
             echo "{"; \
             for f in app.js app.css; do \
               [[ $first == 1 ]] && echo -n "," || first=1; \
               k=${f##*.}/$f; \
-              echo "\"/$k\": \"/$k\""; \
-              echo '' > public/$k; \
+              echo "\"resources/$k\": {\"file\": \"assets/$f\", \"src\": \"resources/$k\"}"; \
+              echo '' > public/build/assets/$f; \
             done; \
             echo "}"; \
-          } | tee public/mix-manifest.json
+          } | tee public/build/manifest.json
       - name: Create sqlite database
         if: matrix.connection == 'sqlite'
         run: touch database/database.sqlite
@@ -100,6 +100,8 @@ jobs:
         run: php artisan route:cache
 
     # Test
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
       - name: Run tests suite with coverage
         if: matrix.connection == env.coverage-with && matrix.php-version == env.default-php-version && matrix.coverage
         run: vendor/bin/phpunit -c phpunit.xml --log-junit ./results/${{ matrix.connection }}/junit/results.xml --coverage-clover ./results/${{ matrix.connection }}/coverage/coverage.xml
@@ -114,6 +116,7 @@ jobs:
       - name: Fix results files
         run: sed -i -e "s%$GITHUB_WORKSPACE/%%g" **/*.xml
         working-directory: results/${{ matrix.connection }}
+        if: success() || failure()
 
       - name: Store results
         if: matrix.php-version == env.default-php-version
@@ -146,8 +149,7 @@ jobs:
 
       - name: Merge junit files
         run: |
-          yarn global add junit-merge
-          $(yarn global bin)/junit-merge --recursive --dir results/${{ env.coverage-with }}/junit --out results/results.xml
+          yarn dlx junit-merge --recursive --dir results/${{ env.coverage-with }}/junit --out results/results.xml
 
       - name: Set version parameter
         id: version
