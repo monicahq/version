@@ -13,7 +13,8 @@
         {{ content }}
 
         <div class="mt-4">
-          <jet-input ref="password" v-model="form.password" type="password"
+          <jet-input
+ref="password" v-model="form.password" type="password"
                      class="mt-1 block w-3/4"
                      placeholder="Password"
                      @keyup.enter="confirmPassword"
@@ -109,7 +110,7 @@ export default {
 
         this.form.processing = false;
         this.closeModal();
-        this.$nextTick(() => this.$emit('confirmed'));
+        this.$nextTick().then(() => this.$emit('confirmed'));
 
       })
         .catch((error) => {

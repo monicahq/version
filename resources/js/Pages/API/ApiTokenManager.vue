@@ -73,7 +73,8 @@
                     Last used {{ token.last_used_ago }}
                   </div>
 
-                  <button v-if="availablePermissions.length > 0"
+                  <button
+v-if="availablePermissions.length > 0"
                           class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                           @click="manageApiTokenPermissions(token)"
                   >

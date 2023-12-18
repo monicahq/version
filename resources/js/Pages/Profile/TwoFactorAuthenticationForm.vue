@@ -61,7 +61,8 @@
 
         <div v-else>
           <jet-confirms-password @confirmed="regenerateRecoveryCodes">
-            <jet-secondary-button v-if="recoveryCodes.length > 0"
+            <jet-secondary-button
+v-if="recoveryCodes.length > 0"
                                   class="mr-3"
             >
               Regenerate Recovery Codes
@@ -165,7 +166,7 @@ export default {
     regenerateRecoveryCodes () {
 
       axios.post('/user/two-factor-recovery-codes')
-        .then((response) => {
+        .then(() => {
 
           this.showRecoveryCodes();
 

@@ -19,14 +19,16 @@
     <form @submit.prevent="submit">
       <div v-if="! recovery">
         <jet-label for="code" value="Code" />
-        <jet-input id="code" ref="code" v-model="form.code" type="text" inputmode="numeric"
+        <jet-input
+id="code" ref="code" v-model="form.code" type="text" inputmode="numeric"
                    class="mt-1 block w-full" autofocus autocomplete="one-time-code"
         />
       </div>
 
       <div v-else>
         <jet-label for="recovery_code" value="Recovery Code" />
-        <jet-input id="recovery_code" ref="recovery_code" v-model="form.recovery_code" type="text" class="mt-1 block w-full"
+        <jet-input
+id="recovery_code" ref="recovery_code" v-model="form.recovery_code" type="text" class="mt-1 block w-full"
                    autocomplete="one-time-code"
         />
       </div>
@@ -85,7 +87,7 @@ export default {
 
       this.recovery ^= true;
 
-      this.$nextTick(() => {
+      this.$nextTick().then(() => {
 
         if (this.recovery) {
 

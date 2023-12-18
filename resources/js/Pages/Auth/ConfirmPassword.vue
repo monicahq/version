@@ -13,7 +13,8 @@
     <form @submit.prevent="submit">
       <div>
         <jet-label for="password" value="Password" />
-        <jet-input id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
+        <jet-input
+id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
                    autocomplete="current-password" autofocus
         />
       </div>

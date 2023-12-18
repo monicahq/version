@@ -10,9 +10,6 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
-
         <!-- Scripts -->
         @routes
         @vite('resources/js/app.js')

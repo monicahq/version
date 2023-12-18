@@ -11,7 +11,8 @@
     <template #form>
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="current_password" value="Current Password" />
-        <jet-input id="current_password" ref="current_password" v-model="form.current_password" type="password" class="mt-1 block w-full"
+        <jet-input
+id="current_password" ref="current_password" v-model="form.current_password" type="password" class="mt-1 block w-full"
                    autocomplete="current-password"
         />
         <jet-input-error :message="form.errors.current_password" class="mt-2" />
@@ -19,7 +20,8 @@
 
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="password" value="New Password" />
-        <jet-input id="password" ref="password" v-model="form.password" type="password" class="mt-1 block w-full"
+        <jet-input
+id="password" ref="password" v-model="form.password" type="password" class="mt-1 block w-full"
                    autocomplete="new-password"
         />
         <jet-input-error :message="form.errors.password" class="mt-2" />

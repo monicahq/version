@@ -9,7 +9,8 @@
     <form @submit.prevent="submit">
       <div>
         <jet-label for="name" value="Name" />
-        <jet-input id="name" v-model="form.name" type="text" class="mt-1 block w-full" required
+        <jet-input
+id="name" v-model="form.name" type="text" class="mt-1 block w-full" required
                    autofocus autocomplete="name"
         />
       </div>
@@ -21,14 +22,16 @@
 
       <div class="mt-4">
         <jet-label for="password" value="Password" />
-        <jet-input id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
+        <jet-input
+id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
                    autocomplete="new-password"
         />
       </div>
 
       <div class="mt-4">
         <jet-label for="password_confirmation" value="Confirm Password" />
-        <jet-input id="password_confirmation" v-model="form.password_confirmation" type="password" class="mt-1 block w-full" required
+        <jet-input
+id="password_confirmation" v-model="form.password_confirmation" type="password" class="mt-1 block w-full" required
                    autocomplete="new-password"
         />
       </div>
@@ -46,9 +49,9 @@
       </div>
 
       <div class="flex items-center justify-end mt-4">
-        <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
+        <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
           Already registered?
-        </Link>
+        </inertia-link>
 
         <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
           Register
@@ -77,7 +80,7 @@ export default {
     JetCheckbox,
     JetLabel,
     JetValidationErrors,
-    Link,
+    InertiaLink: Link,
   },
 
   data () {

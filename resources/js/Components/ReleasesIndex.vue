@@ -43,7 +43,8 @@
                 </div>
 
                 <div class="flex items-center">
-                  <button class="cursor-pointer ml-6 text-sm text-gray-400 underline"
+                  <button
+class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                           @click="openUpdateRelease(release)"
                   >
                     Update

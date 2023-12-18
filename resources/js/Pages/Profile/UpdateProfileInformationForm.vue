@@ -12,7 +12,8 @@
       <!-- Profile Photo -->
       <div v-if="$page.props.jetstream.managesProfilePhotos" class="col-span-6 sm:col-span-4">
         <!-- Profile Photo File Input -->
-        <input ref="photo" type="file"
+        <input
+ref="photo" type="file"
                class="hidden"
                @change="updatePhotoPreview"
         />
@@ -26,7 +27,8 @@
 
         <!-- New Profile Photo Preview -->
         <div v-show="photoPreview" class="mt-2">
-          <span class="block rounded-full w-20 h-20"
+          <span
+class="block rounded-full w-20 h-20"
                 :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'"
           >
           </span>
