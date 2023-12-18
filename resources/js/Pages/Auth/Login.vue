@@ -13,14 +13,16 @@
     <form @submit.prevent="submit">
       <div>
         <jet-label for="email" value="Email" />
-        <jet-input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
+        <jet-input
+id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
                    autofocus
         />
       </div>
 
       <div class="mt-4">
         <jet-label for="password" value="Password" />
-        <jet-input id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
+        <jet-input
+id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
                    autocomplete="current-password"
         />
       </div>
@@ -48,13 +50,14 @@
 </template>
 
 <script>
-import JetAuthenticationCard from '@/Jetstream/AuthenticationCard';
-import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo';
-import JetButton from '@/Jetstream/Button';
-import JetInput from '@/Jetstream/Input';
-import JetCheckbox from '@/Jetstream/Checkbox';
-import JetLabel from '@/Jetstream/Label';
-import JetValidationErrors from '@/Jetstream/ValidationErrors';
+import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue';
+import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue';
+import JetButton from '@/Jetstream/Button.vue';
+import JetInput from '@/Jetstream/Input.vue';
+import JetCheckbox from '@/Jetstream/Checkbox.vue';
+import JetLabel from '@/Jetstream/Label.vue';
+import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
   components: {
@@ -64,7 +67,8 @@ export default {
     JetInput,
     JetCheckbox,
     JetLabel,
-    JetValidationErrors
+    JetValidationErrors,
+    InertiaLink: Link,
   },
 
   props: {

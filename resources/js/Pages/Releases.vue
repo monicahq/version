@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout';
-import ReleasesIndex from '@/Components/ReleasesIndex';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import ReleasesIndex from '@/Components/ReleasesIndex.vue';
 
 export default {
 

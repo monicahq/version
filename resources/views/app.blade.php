@@ -10,12 +10,10 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
-
         <!-- Scripts -->
         @routes
-        <script src="{{ asset(mix('js/app.js')) }}" defer></script>
+        @vite('resources/js/app.js')
+        @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia

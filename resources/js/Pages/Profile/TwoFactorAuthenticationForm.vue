@@ -61,7 +61,8 @@
 
         <div v-else>
           <jet-confirms-password @confirmed="regenerateRecoveryCodes">
-            <jet-secondary-button v-if="recoveryCodes.length > 0"
+            <jet-secondary-button
+v-if="recoveryCodes.length > 0"
                                   class="mr-3"
             >
               Regenerate Recovery Codes
@@ -89,11 +90,11 @@
 </template>
 
 <script>
-import JetActionSection from '@/Jetstream/ActionSection';
-import JetButton from '@/Jetstream/Button';
-import JetConfirmsPassword from '@/Jetstream/ConfirmsPassword';
-import JetDangerButton from '@/Jetstream/DangerButton';
-import JetSecondaryButton from '@/Jetstream/SecondaryButton';
+import JetActionSection from '@/Jetstream/ActionSection.vue';
+import JetButton from '@/Jetstream/Button.vue';
+import JetConfirmsPassword from '@/Jetstream/ConfirmsPassword.vue';
+import JetDangerButton from '@/Jetstream/DangerButton.vue';
+import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
 export default {
   components: {
@@ -119,7 +120,7 @@ export default {
   computed: {
     twoFactorEnabled () {
 
-      return !this.enabling && this.$page.props.user.two_factor_enabled;
+      return !this.enabling && this.$page.props.auth.user.two_factor_enabled;
 
     }
   },
@@ -165,7 +166,7 @@ export default {
     regenerateRecoveryCodes () {
 
       axios.post('/user/two-factor-recovery-codes')
-        .then((response) => {
+        .then(() => {
 
           this.showRecoveryCodes();
 

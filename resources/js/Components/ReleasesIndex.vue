@@ -43,7 +43,8 @@
                 </div>
 
                 <div class="flex items-center">
-                  <button class="cursor-pointer ml-6 text-sm text-gray-400 underline"
+                  <button
+class="cursor-pointer ml-6 text-sm text-gray-400 underline"
                           @click="openUpdateRelease(release)"
                   >
                     Update
@@ -164,17 +165,17 @@
 </template>
 
 <script>
-import JetActionSection from '@/Jetstream/ActionSection';
-import JetButton from '@/Jetstream/Button';
-import JetConfirmationModal from '@/Jetstream/ConfirmationModal';
-import JetDangerButton from '@/Jetstream/DangerButton';
-import JetDialogModal from '@/Jetstream/DialogModal';
-import JetInput from '@/Jetstream/Input';
-import JetTextarea from '@/Jetstream/Textarea';
-import JetInputError from '@/Jetstream/InputError';
-import JetLabel from '@/Jetstream/Label';
-import JetSecondaryButton from '@/Jetstream/SecondaryButton';
-import JetSectionBorder from '@/Jetstream/SectionBorder';
+import JetActionSection from '@/Jetstream/ActionSection.vue';
+import JetButton from '@/Jetstream/Button.vue';
+import JetConfirmationModal from '@/Jetstream/ConfirmationModal.vue';
+import JetDangerButton from '@/Jetstream/DangerButton.vue';
+import JetDialogModal from '@/Jetstream/DialogModal.vue';
+import JetInput from '@/Jetstream/Input.vue';
+import JetTextarea from '@/Jetstream/Textarea.vue';
+import JetInputError from '@/Jetstream/InputError.vue';
+import JetLabel from '@/Jetstream/Label.vue';
+import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
+import JetSectionBorder from '@/Jetstream/SectionBorder.vue';
 
 export default {
   components: {
@@ -211,7 +212,7 @@ export default {
         released_on: '',
         notes: '',
       }),
-      deleteReleaseForm: this.$inertia.form(),
+      deleteReleaseForm: this.$inertia.form({}),
       creatingRelease: null,
       updatingRelease: null,
       deletingRelease: null,

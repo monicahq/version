@@ -11,7 +11,8 @@
 
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form @submit.prevent="$emit('submitted')">
-        <div class="px-4 py-5 bg-white sm:p-6 shadow dark:shadow-gray-700"
+        <div
+class="px-4 py-5 bg-white sm:p-6 shadow dark:shadow-gray-700"
              :class="hasActions ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md'"
         >
           <div class="grid grid-cols-6 gap-6">
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import JetSectionTitle from './SectionTitle';
+import JetSectionTitle from './SectionTitle.vue';
 
 export default {
 

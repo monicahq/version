@@ -13,7 +13,8 @@
         {{ content }}
 
         <div class="mt-4">
-          <jet-input ref="password" v-model="form.password" type="password"
+          <jet-input
+ref="password" v-model="form.password" type="password"
                      class="mt-1 block w-3/4"
                      placeholder="Password"
                      @keyup.enter="confirmPassword"
@@ -37,11 +38,11 @@
 </template>
 
 <script>
-import JetButton from './Button';
-import JetDialogModal from './DialogModal';
-import JetInput from './Input';
-import JetInputError from './InputError';
-import JetSecondaryButton from './SecondaryButton';
+import JetButton from './Button.vue';
+import JetDialogModal from './DialogModal.vue';
+import JetInput from './Input.vue';
+import JetInputError from './InputError.vue';
+import JetSecondaryButton from './SecondaryButton.vue';
 
 export default {
 
@@ -109,7 +110,7 @@ export default {
 
         this.form.processing = false;
         this.closeModal();
-        this.$nextTick(() => this.$emit('confirmed'));
+        this.$nextTick().then(() => this.$emit('confirmed'));
 
       })
         .catch((error) => {

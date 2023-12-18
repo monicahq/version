@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout';
+import AppLayout from '@/Layouts/AppLayout.vue';
 import Highcharts from 'highcharts';
 import stockinit from 'highcharts/modules/stock';
 import { Chart } from 'highcharts-vue';

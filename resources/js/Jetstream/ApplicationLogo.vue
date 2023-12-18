@@ -1,5 +1,6 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" version="1.1"
+  <svg
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" version="1.1"
        viewBox="0 0 500 500"
   >
     <title>Artboard 3.1</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(-2984 68)">
