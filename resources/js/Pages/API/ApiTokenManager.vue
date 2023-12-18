@@ -217,7 +217,7 @@ export default {
         permissions: []
       }),
 
-      deleteApiTokenForm: this.$inertia.form(),
+      deleteApiTokenForm: this.$inertia.form({}),
 
       displayingToken: false,
       managingPermissionsFor: null,

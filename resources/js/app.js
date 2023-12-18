@@ -17,11 +17,6 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     return createApp({
       render: () => h(App, props),
-      mounted() {
-        this.$nextTick(() => {
-          sentry.setContext(this);
-        });
-      },
     })
       .use(plugin)
       .use(ZiggyVue, Ziggy)

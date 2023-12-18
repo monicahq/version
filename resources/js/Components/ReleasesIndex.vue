@@ -211,7 +211,7 @@ export default {
         released_on: '',
         notes: '',
       }),
-      deleteReleaseForm: this.$inertia.form(),
+      deleteReleaseForm: this.$inertia.form({}),
       creatingRelease: null,
       updatingRelease: null,
       deletingRelease: null,

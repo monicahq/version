@@ -10,9 +10,9 @@
             <div class="flex">
               <!-- Logo -->
               <div class="flex-shrink-0 flex items-center">
-                <inertia-link :href="route('releases.index')">
+                <Link :href="route('releases.index')">
                   <jet-application-mark class="block h-9 w-auto" />
-                </inertia-link>
+                </Link>
               </div>
 
               <!-- Navigation Links -->
@@ -252,6 +252,7 @@ import JetDropdown from '@/Jetstream/Dropdown.vue';
 import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
 import JetNavLink from '@/Jetstream/NavLink.vue';
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
   components: {
@@ -261,6 +262,7 @@ export default {
     JetDropdownLink,
     JetNavLink,
     JetResponsiveNavLink,
+    Link,
   },
 
   data () {
