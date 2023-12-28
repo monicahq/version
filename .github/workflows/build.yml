@@ -10,7 +10,7 @@ on:
 
 jobs:
   tests:
-    uses: monicahq/workflows/.github/workflows/library.yml@init
+    uses: monicahq/workflows/.github/workflows/laravel.yml@init
     with:
       php-version: ${{ matrix.php-version }}
       connection: ${{ matrix.connection }}
