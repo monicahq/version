@@ -10,86 +10,16 @@ on:
 
 env:
   php-version: '8.2'
-  node-version: 18
 
 jobs:
   #############
   # Build
   #############
   build:
-    runs-on: ubuntu-latest
-    name: Build assets
-
-    strategy:
-      fail-fast: false
-
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup PHP ${{ env.php-version }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.php-version }}
-          extensions: mbstring, dom, fileinfo
-          coverage: none
-      - name: Check PHP Version
-        run: php -v
-      - name: Check Composer Version
-        run: composer -V
-      - name: Check PHP Extensions
-        run: php -m
-
-    # Composer
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-      - name: Cache composer files
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ env.php-version }}-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-${{ env.php-version }}-${{ hashFiles('**/composer.lock') }}
-            ${{ runner.os }}-composer-${{ env.php-version }}
-            ${{ runner.os }}-composer-
-
-      - name: Install composer dependencies
-        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
-
-    # Yarn
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.node-version }}
-          cache: yarn
-      - name: Install yarn dependencies
-        run: yarn install --immutable
-      - name: Lint files
-        run: yarn run lint
-
-      - name: Prepare environment
-        run: |
-          { \
-            echo "VITE_PROD_SOURCE_MAPS=true"; \
-          } | tee .env
-
-      - name: Build assets
-        run: yarn run build
-
-      - name: Store assets
-        uses: actions/upload-artifact@v4
-        with:
-          name: assets
-          path: |
-            public/build/**/*
-            !public/build/**/*.map
-
+    uses: monicahq/workflows/.github/workflows/build_assets.yml@main
+    with:
+      node-version: 18
+      store: true
 
   ######################
   # Deploy on fortrabbit
