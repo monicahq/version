@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Carbon;
+use Carbon\CarbonInterface as Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PingsCount
